@@ -8,19 +8,15 @@
 
 function playSong(songId) {
     const song = document.getElementById(songId);
-    if(song.hasAttribute("id"))
-    song.removeAttribute("id");
-    else{
     song.setAttribute("id","now");
-    }
-    
+  
 }
 
 /**
  * Creates a song DOM element based on a song object.
  */
 function createSongElement({ id, title, album, artist, duration, coverArt }) {
-    const children = [`Title: ${title}`, `Album: ${album}`, `Artist: ${artist}`, displayImg(coverArt) ,showDuration(duration)]
+    const children = [`Title: ${title}`, `Album: ${album}`, displayImg(coverArt), `Artist: ${artist}` ,showDuration(duration)]
     const classes = ['songs']
     const attrs = {id:id, onclick: `playSong(${id})` }
     return createElement("div", children, classes, attrs)
