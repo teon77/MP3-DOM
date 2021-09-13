@@ -12,11 +12,11 @@ function playSong(songId) {
   
 }
 
-/**
+/** 
  * Creates a song DOM element based on a song object.
  */
 function createSongElement({ id, title, album, artist, duration, coverArt }) {
-    const children = [`Title: ${title}`, `Album: ${album}`, displayImg(coverArt), `Artist: ${artist}` ,showDuration(duration)]
+    const children = [` Title: ${title}`, displayImg(coverArt) , `Album: ${album}`,`Artist: ${artist}` ,showDuration(duration)]
     const classes = ['songs']
     const attrs = {id:id, onclick: `playSong(${id})` }
     return createElement("div", children, classes, attrs)
@@ -47,22 +47,30 @@ function createPlaylistElement({ id, name, songs }) {
  */
 function createElement(tagName, children = [], classes = [], attributes = {}) {
   const element = document.createElement(tagName);
-    children.forEach(child => {
+            /*For children */ 
+    children.forEach(child => {         
         const listItem = document.createElement(`div`);
         if(typeof child ==="string"){
-        listItem.innerHTML = child;
+        listItem.textContent = child;
         }
          else { listItem.appendChild(child)}
          element.appendChild(listItem);
     });
+                /*For classes */
     classes.forEach(cl => element.classList.add(cl));
 
+                /*For attributes */     
     for(const att in attributes){
         element.setAttribute(att,attributes[att]);
     }
  return element;
 }
 
+
+// function gets an array and id, check if the array have a cell with that id.
+// returns the object or the index based on how the function was called.
+// using it also to know if an array consists of somethign where indexOf didnt work
+// return undefined if wasnt
 function getById(arr,id) {
     try {
         for(let i of arr){
@@ -77,6 +85,7 @@ function getById(arr,id) {
     }
     }
 
+    // gets a playlist id and returning its duration
     function playlistDuration(id) {
         try{
         let total = 0;
@@ -101,14 +110,17 @@ function showDuration(duration){
       throw "Please send this function a number"
     }
   } 
+
+
   function displayImg(link){
-    const image = document.createElement('img');
-    image.src = `${link}`;
+    const image = document.createElement('img'); // creates new element
+    image.src = `${link}`;                       // adding attributes
     image.alt ="Song Picture";
-    image.classList.add("picture");
+    image.classList.add("picture");              //adding class
     return image; 
 } 
-  
+
+
 for(let i=0;i<player.songs.length;i++){
    document.getElementById('songs').append(createSongElement(player.songs[i]));
     }

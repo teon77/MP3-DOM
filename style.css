@@ -3,13 +3,11 @@ body {
 }
 
 .songs {
-    display: flex;
     background-color: rgb(177, 247, 170);
     animation: change 700000ms 1;
     border-radius: 20px;
     justify-content: space-evenly;
     padding: 3px;
-    margin-top: 20px;
     max-width: 140vh;
 }
 #now {
@@ -24,12 +22,23 @@ body {
         background-color: rgb(231, 10, 10);
     }
 }
+
 #songs {
+    display: flex;
     font-size: 30px;
-    align-items: stretch;
     padding: 5px;
     margin-top: 30vh;
 }
+#songs div {
+    display: table;
+    margin-top: 55px;
+    margin-right: 10px;
+}
+#songs div div {
+    color: rgb(46, 11, 46);
+    text-align: center;
+}
+
 #playlists {
     display: flex;
     font-size: 30px;
