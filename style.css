@@ -1,19 +1,22 @@
 body {
     background-color: lavender;
+    background: linear-gradient(335deg, #ccffff 10%, #ffcccc 100%);
 }
 
 .songs {
-    background-color: rgb(177, 247, 170);
+    background: linear-gradient(35deg, #ccffff 10%, #ffcccc 100%);
     animation: change 700000ms 1;
     border-radius: 20px;
     justify-content: space-evenly;
     padding: 3px;
     max-width: 140vh;
+    margin-left: 20px;
 }
 #now {
     color: lightseagreen;
     animation: change;
 }
+
 @keyframes change {
     from {
         background-color: rgb(177, 247, 170);
@@ -29,14 +32,11 @@ body {
     padding: 5px;
     margin-top: 30vh;
 }
+
 #songs div {
     display: table;
     margin-top: 55px;
     margin-right: 10px;
-}
-#songs div div {
-    color: rgb(46, 11, 46);
-    text-align: center;
 }
 
 #playlists {
@@ -45,20 +45,31 @@ body {
     align-items: stretch;
     padding: 5px;
 }
+
 .playlists {
-    background-color: rgb(152, 212, 117);
+    background: linear-gradient(150deg, #ccffff 10%, #ffcccc 100%);
     min-width: 400px;
     max-height: 500px;
     border-radius: 20px;
     margin-left: 20px;
+    position: relative;
+    top: 200px;
+    left: -30px;
 }
+
 .playlists div {
     position: relative;
     left: 20px;
 }
+
 .header {
     position: relative;
     left: 600px;
     top: 50px;
     font-size: 50px;
+}
+
+span {
+    text-align: center;
+    text-decoration: underline brown;
 }

@@ -16,7 +16,11 @@ function playSong(songId) {
  * Creates a song DOM element based on a song object.
  */
 function createSongElement({ id, title, album, artist, duration, coverArt }) {
-    const children = [` Title: ${title}`, displayImg(coverArt) , `Album: ${album}`,`Artist: ${artist}` ,showDuration(duration)]
+    const titleEl = createElement("span",[` Title: ${title}`],[],{id:`title${id}`});
+    const albumEl = createElement("span",[`Album: ${album}`],[],{id:`album${id}`});
+    const artistEl = createElement("span",[`Artist: ${artist}`],[],{id:`artist${id}`});
+    const durationEl = createElement("span",[showDuration(duration)],[],{id:`duration${id}`});
+    const children = [titleEl, displayImg(coverArt) , albumEl, artistEl,durationEl]
     const classes = ['songs']
     const attrs = {id:id, onclick: `playSong(${id})` }
     return createElement("div", children, classes, attrs)
@@ -26,10 +30,12 @@ function createSongElement({ id, title, album, artist, duration, coverArt }) {
  * Creates a playlist DOM element based on a playlist object.
  */
 function createPlaylistElement({ id, name, songs }) {
-   
-    const children = [`Name: ${name}`,`Number Of Songs: ${songs.length}`,showDuration(playlistDuration(id))]
-    const classes = ['playlists']
-    const attrs = {id: id}
+    const nameEl = createElement("span",[`Name: ${name}`],[],{id:`name${id}`});
+    const durationEl = createElement("span",[showDuration(playlistDuration(id))],[],{id:`duration${id}`});
+    const numSongEl = createElement("span",[`Number Of Songs: ${songs.length}`],[],{id:`${songs.length}`});
+    const children = [nameEl,,durationEl,numSongEl];
+    const classes = ['playlists'];
+    const attrs = {id: id};
     return createElement("div", children, classes, attrs)
 }
 
@@ -121,9 +127,9 @@ function showDuration(duration){
 } 
 
 
-for(let i=0;i<player.songs.length;i++){
-   document.getElementById('songs').append(createSongElement(player.songs[i]));
-    }
 for(let i=0;i<player.playlists.length;i++){
     document.getElementById('playlists').append(createPlaylistElement(player.playlists[i]));
 }
+for(let i=0;i<player.songs.length;i++){
+  document.getElementById('songs').append(createSongElement(player.songs[i]));
+   }
