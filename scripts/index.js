@@ -5,24 +5,28 @@
  *
  * @param {String} songId - the ID of the song to play
  */
-
+ //.addEventListener("click", playSong);
 function playSong(songId) {
-    const song = document.getElementById(songId);
-    song.setAttribute("id","now");
-  
+    let arr = document.getElementsByClassName("now");
+    for(let wow of arr){
+        wow.classList.remove("now");
+    }
+    const some = document.getElementById(songId);
+    some.classList.add("now");
+
 }
 
 /** 
  * Creates a song DOM element based on a song object.
  */
 function createSongElement({ id, title, album, artist, duration, coverArt }) {
-    const titleEl = createElement("span",[` Title: ${title}`],[],{id:`title${id}`});
+    const titleEl = createElement("span",[`Title: ${title}`],[],{id:`title${id}`});
     const albumEl = createElement("span",[`Album: ${album}`],[],{id:`album${id}`});
     const artistEl = createElement("span",[`Artist: ${artist}`],[],{id:`artist${id}`});
     const durationEl = createElement("span",[showDuration(duration)],[],{id:`duration${id}`});
     const children = [titleEl, displayImg(coverArt) , albumEl, artistEl,durationEl]
     const classes = ['songs']
-    const attrs = {id:id, onclick: `playSong(${id})` }
+    const attrs = {id:`song${id}`,onclick:`playSong('song${id}')`}
     return createElement("div", children, classes, attrs)
 }
 
@@ -131,5 +135,6 @@ for(let i=0;i<player.playlists.length;i++){
     document.getElementById('playlists').append(createPlaylistElement(player.playlists[i]));
 }
 for(let i=0;i<player.songs.length;i++){
-  document.getElementById('songs').append(createSongElement(player.songs[i]));
+  const newSong = createSongElement(player.songs[i])
+  document.getElementById('songs').append(newSong);
    }

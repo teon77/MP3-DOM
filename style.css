@@ -4,7 +4,7 @@ body {
 }
 
 .songs {
-    background: linear-gradient(35deg, #ccffff 10%, #ffcccc 100%);
+    background: linear-gradient(35deg, #378383 10%, #ffcccc 100%);
     animation: change 700000ms 1;
     border-radius: 20px;
     justify-content: space-evenly;
@@ -12,31 +12,29 @@ body {
     max-width: 140vh;
     margin-left: 20px;
 }
-#now {
-    color: lightseagreen;
-    animation: change;
-}
-
-@keyframes change {
-    from {
-        background-color: rgb(177, 247, 170);
-    }
-    to {
-        background-color: rgb(231, 10, 10);
-    }
+.now {
+    background: linear-gradient(35deg, #28aa53 10%, #da2727 100%);
 }
 
 #songs {
     display: flex;
-    font-size: 30px;
-    padding: 5px;
-    margin-top: 30vh;
+    justify-content: space-between;
+    justify-content: center;
+    margin-left: 80px;
+    margin-top: 35vh;
+    flex-direction: 2 row;
+    flex-wrap: wrap;
 }
 
 #songs div {
-    display: table;
-    margin-top: 55px;
-    margin-right: 10px;
+    max-width: 42vh;
+    margin: 15px;
+    margin-top: 20px;
+    padding: 5px;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    justify-content: center;
+    text-align: center;
+    font-size: 30px;
 }
 
 #playlists {
@@ -44,6 +42,9 @@ body {
     font-size: 30px;
     align-items: stretch;
     padding: 5px;
+    position: relative;
+    top: 150px;
+    left: 25px;
 }
 
 .playlists {
@@ -53,8 +54,6 @@ body {
     border-radius: 20px;
     margin-left: 20px;
     position: relative;
-    top: 200px;
-    left: -30px;
 }
 
 .playlists div {
@@ -67,9 +66,4 @@ body {
     left: 600px;
     top: 50px;
     font-size: 50px;
-}
-
-span {
-    text-align: center;
-    text-decoration: underline brown;
 }
