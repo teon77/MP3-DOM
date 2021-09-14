@@ -29,8 +29,18 @@ function playSong(songId) {
  * @param {Number} songId - the ID of the song to remove
  */
 function removeSong(songId) {
-    let y=document.getElementById(songId);
+       /* Remove from DOM */
+    let y = document.getElementById(songId);
     y.remove();
+      /* Remove from player Object */
+      const originId = songId.substring(4);    // gets the id in player.songs
+    if(getById(player.songs,originId)===undefined) throw "non-existent ID";
+
+      player.songs.splice(getById(player.songs,originId),1);  // removes 1 cell from the index
+         for(let i = 0; i < player.playlists.length; i++){   // iterate through different playlists
+             let index = player.playlists[i].songs.indexOf(originId) // finiding the index inside the array
+             player.playlists[i].songs.splice(index,1);
+    }
 }
 
 /**
@@ -57,7 +67,10 @@ function addSong({title, album, artist, duration, coverArt }) {
  * @param {MouseEvent} event - the click event
  */
 function handleSongClickEvent(event) {
-    // Your code here
+    const songSection = document.getElementById("songs");
+    songSection.addEventListener("click", function(event){
+     const sectionCords= this.getBoundingClientRect();
+    })
 }
 
 /**
