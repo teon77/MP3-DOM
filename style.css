@@ -50,7 +50,7 @@ body {
     margin-top: 0.5rem;
 }
 .now {
-    background: red;
+    background: linear-gradient(0deg, #7c7ae7 10%, #ffcccc 100%);
 }
 .header {
     position: relative;
@@ -62,9 +62,9 @@ body {
     max-height: 9rem;
     border-radius: 1rem;
 }
-h3 {
+h2 {
     position: relative;
-    top: 10rem;
-    left: 10rem;
-    font-size: 3rem;
+    font-size: 2rem;
+    margin: auto;
+    margin-bottom: 2rem;
 }
