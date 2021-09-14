@@ -25,7 +25,19 @@ body {
     margin-top: 0.5rem;
     margin-right: 1rem;
 }
-
+.btnContainer {
+    display: flex;
+    flex-direction: column;
+}
+.btnContainer button {
+    background: linear-gradient(325deg, #92e9c8 10%, #ffcccc 100%);
+    font-family: "Azeret Mono", monospace;
+    font-size: 1.8rem;
+    max-width: 10rem;
+}
+.btnContainer button div {
+    margin: auto;
+}
 #playlists {
     display: flex;
     margin-left: 1rem;

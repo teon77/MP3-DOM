@@ -5,9 +5,9 @@
  * @param {Number} songId - the ID of the song to play
  */
 function playSong(songId) {
-    let SongsELeArr = getSongElementsArray();   // gets array with the songs elements
-    for(let i = 0; i < SongsELeArr.length; i++){
-        SongsELeArr[i].style.background="";     // removing theyre background
+    let songsEleArr = getSongElementsArray();   // gets array with the songs elements
+    for(let i = 0; i < songsEleArr.length; i++){
+        songsEleArr[i].style.background="";     // removing theyre background
     }
                   /*making the clicked song "play" */
     const playingSong = document.getElementById(songId);
@@ -18,8 +18,8 @@ function playSong(songId) {
 
     setTimeout(() => {
 
-        if(indexPlaying + 1===SongsELeArr.length) {playSong(SongsELeArr[0].id)}
-        playSong(SongsELeArr[indexPlaying + 1].id);
+        if(indexPlaying + 1===songsEleArr.length) {playSong(songsEleArr[0].id)}
+        playSong(songsEleArr[indexPlaying + 1].id);
       }, (songDuration * 1000));
 }
 
@@ -29,7 +29,8 @@ function playSong(songId) {
  * @param {Number} songId - the ID of the song to remove
  */
 function removeSong(songId) {
-    // Your code here
+    let y=document.getElementById(songId);
+    y.remove();
 }
 
 /**
@@ -83,8 +84,11 @@ function createSongElement({ id, title, album, artist, duration, coverArt }) {
     const titleEl = createElement("span",[`Title: ${title}`],[],{id:`title${id}`});
     const albumEl = createElement("span",[`Album: ${album}`],[],{id:`album${id}`});
     const artistEl = createElement("span",[`Artist: ${artist}`],[],{id:`artist${id}`});
-    const durationEl = createElement("span",[`${showDuration(duration)}`],[],{id:`duration${id}`}); ;
-    const children = [displayImg(coverArt), titleEl, albumEl, artistEl, durationEl]
+    const durationEl = createElement("span",[`${showDuration(duration)}`],[],{id:`duration${id}`}); 
+    const addButton = createElement("button",[`Play`],[],{id:`addbutton${id}`});
+    const removeButton = createElement("button",[`Remove`],[],{id:`removebutton${id}`});
+    const buttonContaniner = createElement("div",[addButton,removeButton],["btnContainer"],{id:`container${id}`});
+    const children = [displayImg(coverArt), titleEl, albumEl, artistEl,buttonContaniner, durationEl]
     const classes = ['songs']
     const attrs = {id:`song${id}`,onclick:`playSong('song${id}')`}
     const eventListeners = {}
