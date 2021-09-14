@@ -7,24 +7,23 @@
  */
  //.addEventListener("click", playSong);
 function playSong(songId) {
-    let arr = document.getElementsByClassName("now");
-    for(let wow of arr){
-        wow.classList.remove("now");
+    let SongsELeArr = document.getElementsByClassName("now");
+    for(let songEl of SongsELeArr){
+        songEl.classList.remove("now");
     }
-    const some = document.getElementById(songId);
-    some.classList.add("now");
-
+    const playingSong = document.getElementById(songId);
+    playingSong.classList.add("now");
 }
 
 /** 
  * Creates a song DOM element based on a song object.
- */
+ */  
 function createSongElement({ id, title, album, artist, duration, coverArt }) {
     const titleEl = createElement("span",[`Title: ${title}`],[],{id:`title${id}`});
     const albumEl = createElement("span",[`Album: ${album}`],[],{id:`album${id}`});
     const artistEl = createElement("span",[`Artist: ${artist}`],[],{id:`artist${id}`});
     const durationEl = createElement("span",[showDuration(duration)],[],{id:`duration${id}`});
-    const children = [titleEl, displayImg(coverArt) , albumEl, artistEl,durationEl]
+    const children = [displayImg(coverArt), titleEl, albumEl, artistEl, durationEl]
     const classes = ['songs']
     const attrs = {id:`song${id}`,onclick:`playSong('song${id}')`}
     return createElement("div", children, classes, attrs)
@@ -37,7 +36,7 @@ function createPlaylistElement({ id, name, songs }) {
     const nameEl = createElement("span",[`Name: ${name}`],[],{id:`name${id}`});
     const durationEl = createElement("span",[showDuration(playlistDuration(id))],[],{id:`duration${id}`});
     const numSongEl = createElement("span",[`Number Of Songs: ${songs.length}`],[],{id:`${songs.length}`});
-    const children = [nameEl,,durationEl,numSongEl];
+    const children = [nameEl,durationEl,numSongEl];
     const classes = ['playlists'];
     const attrs = {id: id};
     return createElement("div", children, classes, attrs)
@@ -114,7 +113,7 @@ function getById(arr,id) {
 function showDuration(duration){ 
     try {
     let x = new Date(duration * 1000).toISOString().substr(14, 5);
-    return "Duration: " + x;
+    return x;
     }
     catch {
       throw "Please send this function a number"

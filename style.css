@@ -3,67 +3,68 @@ body {
     background: linear-gradient(335deg, #ccffff 10%, #ffcccc 100%);
 }
 
-.songs {
-    background: linear-gradient(35deg, #378383 10%, #ffcccc 100%);
-    animation: change 700000ms 1;
-    border-radius: 20px;
-    justify-content: space-evenly;
-    padding: 3px;
-    max-width: 140vh;
-    margin-left: 20px;
-}
-.now {
-    background: linear-gradient(35deg, #28aa53 10%, #da2727 100%);
-}
-
 #songs {
     display: flex;
-    justify-content: space-between;
-    justify-content: center;
-    margin-left: 80px;
-    margin-top: 35vh;
-    flex-direction: 2 row;
-    flex-wrap: wrap;
+    margin-left: 1rem;
+    margin-top: 15rem;
+    flex-direction: column;
 }
-
-#songs div {
-    max-width: 42vh;
-    margin: 15px;
-    margin-top: 20px;
-    padding: 5px;
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    justify-content: center;
-    text-align: center;
-    font-size: 30px;
+.songs {
+    background: linear-gradient(35deg, #92e9c8 10%, #ffcccc 100%);
+    border-radius: 1rem;
+    display: flex;
+    max-height: 10rem;
+    margin-top: 1rem;
+    margin-left: 1rem;
+    font-family: "Azeret Mono", monospace;
+    font-size: 1.8rem;
+    justify-content: start;
+}
+.songs div {
+    margin-left: 2rem;
+    margin-top: 0.5rem;
+    margin-right: 1rem;
 }
 
 #playlists {
     display: flex;
-    font-size: 30px;
-    align-items: stretch;
-    padding: 5px;
-    position: relative;
-    top: 150px;
-    left: 25px;
+    margin-left: 1rem;
+    margin-top: 15rem;
+    flex-direction: column;
 }
 
 .playlists {
-    background: linear-gradient(150deg, #ccffff 10%, #ffcccc 100%);
-    min-width: 400px;
-    max-height: 500px;
-    border-radius: 20px;
-    margin-left: 20px;
-    position: relative;
+    background: linear-gradient(35deg, #92e9c8 10%, #ffcccc 100%);
+    border-radius: 1rem;
+    display: flex;
+    max-height: 10rem;
+    margin-top: 1rem;
+    margin-left: 1rem;
+    font-family: "Azeret Mono", monospace;
+    font-size: 1.8rem;
+    justify-content: start;
 }
 
 .playlists div {
-    position: relative;
-    left: 20px;
+    margin-left: 2rem;
+    margin-top: 0.5rem;
 }
-
+.now {
+    background: red;
+}
 .header {
     position: relative;
     left: 600px;
     top: 50px;
-    font-size: 50px;
+    font-size: 5rem;
+}
+.picture {
+    max-height: 9rem;
+    border-radius: 1rem;
+}
+h3 {
+    position: relative;
+    top: 10rem;
+    left: 10rem;
+    font-size: 3rem;
 }
