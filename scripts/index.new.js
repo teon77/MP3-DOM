@@ -9,7 +9,7 @@ function playSong(songId) {
     for(let i = 0; i < songsEleArr.length; i++){
         songsEleArr[i].style.background="";     // removing theyre background
     }
-                  /*making the clicked song "play" */
+                  /* making the clicked song "play" */
     const playingSong = document.getElementById(songId);
     playingSong.style.background = "linear-gradient(0deg, #7c7ae7 10%, #ffcccc 100%)";
                 /* going to the next song when the original is over */
@@ -17,7 +17,7 @@ function playSong(songId) {
     let indexPlaying = getIndex(songId);
 
     setTimeout(() => {
-
+      
         if(indexPlaying + 1===songsEleArr.length) {playSong(songsEleArr[0].id)}
         playSong(songsEleArr[indexPlaying + 1].id);
       }, (songDuration * 1000));
@@ -33,13 +33,16 @@ function removeSong(songId) {
     let y = document.getElementById(songId);
     y.remove();
       /* Remove from player Object */
-      const originId = songId.substring(4);    // gets the id in player.songs
+      const originId = Number(songId.substring(4));    // gets the id in player.songs
+       
     if(getById(player.songs,originId)===undefined) throw "non-existent ID";
 
       player.songs.splice(getById(player.songs,originId),1);  // removes 1 cell from the index
+
          for(let i = 0; i < player.playlists.length; i++){   // iterate through different playlists
-             let index = player.playlists[i].songs.indexOf(originId) // finiding the index inside the array
-             player.playlists[i].songs.splice(index,1);
+             let index = player.playlists[i].songs.indexOf(originId); // finiding the index inside the array
+             if(index!==-1) {player.playlists[i].songs.splice(index,1);}
+             
     }
 }
 
@@ -161,7 +164,7 @@ function createElement(tagName, children = [], classes = [], attributes = {}, ev
  * Inserts all songs in the player as DOM elements into the songs list.
  */
 function generatePlaylists() {
-    for(let i=0;i<player.playlists.length;i++){
+    for(let i = 0; i < player.playlists.length; i++){
         document.getElementById('playlists').append(createPlaylistElement(player.playlists[i]));
     }
 }
@@ -170,7 +173,7 @@ function generatePlaylists() {
  * Inserts all playlists in the player as DOM elements into the playlists list.
  */
 function generateSongs() {
-    for(let i=0;i<player.songs.length;i++){
+    for(let i = 0; i < player.songs.length; i++){
         const newSong = createSongElement(player.songs[i])
         document.getElementById('songs').append(newSong);
          }
@@ -178,7 +181,7 @@ function generateSongs() {
 function displayImg(link){
     const image = document.createElement('img'); // creates new element
     image.src = `${link}`;                       // adding attributes
-    image.alt ="Song Picture";
+    image.alt = "Song Picture";
     image.classList.add("picture");              //adding class
     return image; 
 } 
