@@ -6,19 +6,19 @@
  */
 function playSong(songId) {
     let songsEleArr = getSongElementsArray();   // gets array with the songs elements
-    for(let i = 0; i < songsEleArr.length; i++){
-        songsEleArr[i].style.background="";     // removing theyre background
-    }
-                  /* making the clicked song "play" */
-    const playingSong = document.getElementById(songId);
-    playingSong.style.background = "linear-gradient(0deg, #7c7ae7 10%, #ffcccc 100%)";
-                /* going to the next song when the original is over */
     let songDuration = getElementDurationById(songId);
     let indexPlaying = getIndex(songId);
-
+    songsEleArr.map(songEl =>{songEl.style.background="";   // removing theyre background
+    });
+                  /* making the clicked song "play" */
+    const playingSong = document.getElementById(songId);
+      playingSong.style.background = "linear-gradient(0deg, #7c7ae7 10%, #ffcccc 100%)";
+      
+                /* going to the next song when the original is over */
+  
     setTimeout(() => {
       
-        if(indexPlaying + 1===songsEleArr.length) {playSong(songsEleArr[0].id)}
+        if(indexPlaying + 1 ===songsEleArr.length) {playSong(songsEleArr[0].id)}
         playSong(songsEleArr[indexPlaying + 1].id);
       }, (songDuration * 1000));
 }
@@ -30,8 +30,22 @@ function playSong(songId) {
  */
 function removeSong(songId) {
        /* Remove from DOM */
-    let y = document.getElementById(songId);
+       let y = document.getElementById(songId);
+       y.style.animation = "aniRemove 1s ease 0s 1 normal forwards;"
+       y.animate([
+        // keyframes
+        { transform: 'translateX(0px) translateY(0px)' },
+        { transform: 'translateX(300px) translateY(300px)' },
+        { transform: 'translateX(600px) translateY(600px)' },
+        { transform: 'translateX(900px) translateY(900px)' }
+      ], {
+        // timing options
+        duration: 3000,
+        iterations: 1
+      });
+       setTimeout(()=>{
     y.remove();
+  }, 3000)
       /* Remove from player Object */
       const originId = Number(songId.substring(4));    // gets the id in player.songs
        
@@ -59,6 +73,7 @@ function addSong({title, album, artist, duration, coverArt }) {
         coverArt: coverArt
     };
              /*  creating the element and appending */
+             alert(`You just created ${title} check him out at the bottom`)
     document.getElementById('songs').append(createSongElement(newSong));
     player.songs.push(newSong);
 }
@@ -70,9 +85,21 @@ function addSong({title, album, artist, duration, coverArt }) {
  * @param {MouseEvent} event - the click event
  */
 function handleSongClickEvent(event) {
+    let arr = player.songs;
     const songSection = document.getElementById("songs");
-    songSection.addEventListener("click", function(event){
-     const sectionCords= this.getBoundingClientRect();
+    songSection.addEventListener("click", function(e){
+      for(let i = 0; i < arr.length; i++){
+        if(e.target.id==`playbutton${arr[i].id}`){
+          let btnEl = document.getElementById(`playbutton${arr[i].id}`);
+          btnEl.addEventListener("click",playSong(`song${arr[i].id}`));
+        }
+      }
+      for(let i = 0; i < arr.length; i++){
+        if(e.target.id == `removeButton${arr[i].id}`){
+          let btnEl = document.getElementById(`removeButton${arr[i].id}`);
+          btnEl.addEventListener("click",removeSong(`song${arr[i].id}`));
+        }
+      }
     })
 }
 
@@ -82,15 +109,24 @@ function handleSongClickEvent(event) {
  * @param {MouseEvent} event - the click event
  */
 function handleAddSongEvent(event) {
-    /* getting the inputted values and sending to addSong */
-   const titleIn = document.getElementsByName("title")[0].value;
-   const albumIn = document.getElementsByName("album")[0].value;
-   const artistIn = document.getElementsByName("artist")[0].value;
-   const durationIn = document.getElementsByName("duration")[0].value;
-   const coverartIn = document.getElementsByName("cover-art")[0].value;
+             /* getting the inputted values */
+   const titleIn = document.getElementsByName("title")[0];
+   const albumIn = document.getElementsByName("album")[0];
+   const artistIn = document.getElementsByName("artist")[0];
+   const durationIn = document.getElementsByName("duration")[0];
+   const coverartIn = document.getElementsByName("cover-art")[0];
+                
+                  /* sending to addSong */
+    addSong({title: titleIn.value, album: albumIn.value, artist: artistIn.value, duration: durationIn.value,
+    coverArt: coverartIn.value});
 
-    addSong({title: titleIn, album: albumIn, artist: artistIn, duration: durationIn,
-    coverArt: coverartIn});
+              /* clearing the input fields  */ 
+    titleIn.value ='';
+    albumIn.value ='';
+    artistIn.value ='';
+    durationIn.value ='';
+    coverartIn.value ='';
+
 }
 
 /**
@@ -101,12 +137,21 @@ function createSongElement({ id, title, album, artist, duration, coverArt }) {
     const albumEl = createElement("span",[`Album: ${album}`],[],{id:`album${id}`});
     const artistEl = createElement("span",[`Artist: ${artist}`],[],{id:`artist${id}`});
     const durationEl = createElement("span",[`${showDuration(duration)}`],[],{id:`duration${id}`}); 
-    const addButton = createElement("button",[`Play`],[],{id:`addbutton${id}`});
-    const removeButton = createElement("button",[`Remove`],[],{id:`removebutton${id}`});
-    const buttonContaniner = createElement("div",[addButton,removeButton],["btnContainer"],{id:`container${id}`});
+
+    const playButton = document.createElement("button");
+          playButton.setAttribute("id",`playbutton${id}`);
+          playButton.classList.add("buttons");
+          playButton.textContent = "Play";
+          
+    const removeButton = document.createElement("button");
+          removeButton.setAttribute("id",`removeButton${id}`);
+          removeButton.classList.add("buttons");
+          removeButton.textContent = "Remove";
+          
+    const buttonContaniner = createElement("div",[playButton,removeButton],["btnContainer"],{id:`container${id}`});
     const children = [displayImg(coverArt), titleEl, albumEl, artistEl,buttonContaniner, durationEl]
     const classes = ['songs']
-    const attrs = {id:`song${id}`,onclick:`playSong('song${id}')`}
+    const attrs = {id:`song${id}`}
     const eventListeners = {}
     return createElement("div", children, classes, attrs, eventListeners)
 }
@@ -271,6 +316,6 @@ function showDuration(duration){
 generateSongs()
 generatePlaylists()
 
-// Making the add-song-button actually do something
-document.getElementById("add-button").addEventListener("click", handleAddSongEvent)
-
+// Making the buttons actually do something
+document.getElementById("add-button").addEventListener("click", handleAddSongEvent);
+document.getElementById("songs").addEventListener("click", handleSongClickEvent);
