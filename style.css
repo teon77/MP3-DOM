@@ -6,6 +6,7 @@ body {
 #inputs {
     animation: myAnim 2s ease 0s 1 normal forwards;
 }
+
 #songs {
     display: flex;
     margin-left: 1rem;
@@ -29,6 +30,7 @@ body {
     margin-top: 0.5rem;
     margin-right: 1rem;
     animation: myAnim 2s ease 0s 1 normal forwards;
+    display: grid;
 }
 
 .btnContainer {
@@ -72,9 +74,7 @@ body {
     margin-left: 2rem;
     margin-top: 0.5rem;
 }
-.now {
-    background: rgb(red, green, blue);
-}
+
 .header {
     position: relative;
     left: 600px;
@@ -140,17 +140,5 @@ h2 {
         animation-timing-function: ease-out;
         opacity: 1;
         transform: translateY(0px);
-    }
-}
-
-@keyframes aniRemove {
-    0% {
-        opacity: 1;
-        transform: translateX(0);
-    }
-
-    100% {
-        opacity: 0;
-        transform: translateX(250px);
     }
 }
