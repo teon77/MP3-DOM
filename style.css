@@ -33,11 +33,6 @@ body {
     display: table-cell;
 }
 
-.btnContainer {
-    display: flex;
-    flex-direction: column;
-}
-
 .buttons {
     height: 3rem;
     width: 8rem;
@@ -68,7 +63,6 @@ body {
     font-family: "Azeret Mono", monospace;
     font-size: 1.8rem;
     justify-content: start;
-    border: solid;
 }
 
 .playlists div {
@@ -86,6 +80,7 @@ body {
 .picture {
     max-height: 9rem;
     border-radius: 1rem;
+    border: solid;
 }
 h2 {
     position: relative;
