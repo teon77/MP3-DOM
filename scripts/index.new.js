@@ -73,7 +73,7 @@ function addSong({title, album, artist, duration, coverArt }) {
         coverArt: coverArt
     };
              /*  creating the element and appending */
-             alert(`You just created ${title} check him out at the bottom`)
+             alert(`You Just Created ${title} Check Him Out Down Below`)
     document.getElementById('songs').append(createSongElement(newSong));
     player.songs.push(newSong);
 }
