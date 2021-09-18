@@ -1,1 +1,140 @@
-/* Your code here */
+body {
+    background-color: lavender;
+    background: linear-gradient(335deg, #ccffff 10%, #ffcccc 100%);
+    animation: myAnim 2s ease 0s 1 normal forwards;
+}
+#inputs {
+    animation: myAnim 2s ease 0s 1 normal forwards;
+}
+
+#songs {
+    display: flex;
+    margin-left: 1rem;
+    margin-top: 15rem;
+    flex-direction: column;
+    animation: myAnim 2s ease 0s 1 normal forwards;
+}
+.songs {
+    background: linear-gradient(35deg, #92e9c8 10%, #ffcccc 100%);
+    border-radius: 1rem;
+    display: flex;
+    max-height: 10rem;
+    margin-top: 1rem;
+    margin-left: 1rem;
+    font-family: "Azeret Mono", monospace;
+    font-size: 1.8rem;
+    justify-content: space-between;
+    border: solid;
+}
+.songs div {
+    margin-left: 3rem;
+    margin-top: 0.5rem;
+    margin-right: 1rem;
+    display: table-cell;
+}
+
+.buttons {
+    height: 3rem;
+    width: 8rem;
+    background: linear-gradient(35deg, #92e9c8 10%, #ffcccc 100%);
+    border-radius: 1rem;
+    font-size: 1.8rem;
+}
+.buttons:hover {
+    height: 4rem;
+    width: 9rem;
+    font-size: 2.2rem;
+}
+#playlists {
+    display: flex;
+    margin-left: 1rem;
+    margin-top: 15rem;
+    flex-direction: column;
+    animation: myAnim 2s ease 0s 1 normal forwards;
+}
+
+.playlists {
+    background: linear-gradient(35deg, #92e9c8 10%, #ffcccc 100%);
+    border-radius: 1rem;
+    display: flex;
+    max-height: 10rem;
+    margin-top: 1rem;
+    margin-left: 1rem;
+    font-family: "Azeret Mono", monospace;
+    font-size: 1.8rem;
+    justify-content: start;
+}
+
+.playlists div {
+    margin-left: 2rem;
+    margin-top: 0.5rem;
+}
+
+.header {
+    position: relative;
+    left: 600px;
+    top: 50px;
+    font-size: 5rem;
+    animation: myAnim 2s ease 0s 1 normal forwards;
+}
+.picture {
+    max-height: 9rem;
+    border-radius: 1rem;
+    border: solid;
+}
+h2 {
+    position: relative;
+    font-size: 2rem;
+    margin: auto;
+    margin-bottom: 2rem;
+}
+#add-button {
+    margin-top: 2rem;
+    margin-left: 2rem;
+}
+
+@keyframes myAnim {
+    0% {
+        animation-timing-function: ease-in;
+        opacity: 1;
+        transform: translateY(-45px);
+    }
+
+    24% {
+        opacity: 1;
+    }
+
+    40% {
+        animation-timing-function: ease-in;
+        transform: translateY(-24px);
+    }
+
+    65% {
+        animation-timing-function: ease-in;
+        transform: translateY(-12px);
+    }
+
+    82% {
+        animation-timing-function: ease-in;
+        transform: translateY(-6px);
+    }
+
+    93% {
+        animation-timing-function: ease-in;
+        transform: translateY(-4px);
+    }
+
+    25%,
+    55%,
+    75%,
+    87% {
+        animation-timing-function: ease-out;
+        transform: translateY(0px);
+    }
+
+    100% {
+        animation-timing-function: ease-out;
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
