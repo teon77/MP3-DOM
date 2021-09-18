@@ -86,14 +86,11 @@ function addSong({title, album, artist, duration, coverArt }) {
  */
 function handleSongClickEvent(event) {
       let arr = player.songs;
-      for(let i = 0; i < arr.length; i++){
-        if(event.target.id == `playbutton${arr[i].id}`) { playSong(`song${arr[i].id}`); }
+      for(let btn of arr){   // btn is used to get the button elements id's example: removeButton7
+        if(event.target.id == `playbutton${btn.id}`) { playSong(`song${btn.id}`); }
+        if(event.target.id == `removeButton${btn.id}`){ removeSong(`song${btn.id}`) }
+        }
       }
-      for(let i = 0; i < arr.length; i++){
-        if(event.target.id == `removeButton${arr[i].id}`){ removeSong(`song${arr[i].id}`); }
-      }
-}
-
 /**
  * Handles a click event on the button that adds songs.
  *
