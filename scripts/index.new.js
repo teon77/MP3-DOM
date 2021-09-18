@@ -34,18 +34,18 @@ function removeSong(songId) {
        y.style.animation = "aniRemove 1s ease 0s 1 normal forwards;"
        y.animate([
         // keyframes
-        { transform: 'translateX(0px) translateY(0px)' },
-        { transform: 'translateX(300px) translateY(300px)' },
-        { transform: 'translateX(600px) translateY(600px)' },
-        { transform: 'translateX(900px) translateY(900px)' }
+        { transform: 'translateX(0px) translateY(0px)'},
+        { opacity: 0.5},
+        { transform: 'translateX(800px) translateY(200px)' },
+        { opacity: 0}
       ], {
         // timing options
-        duration: 3000,
+        duration: 2500,
         iterations: 1
       });
        setTimeout(()=>{
     y.remove();
-  }, 3000)
+  }, 1600)
       /* Remove from player Object */
       const originId = Number(songId.substring(4));    // gets the id in player.songs
        
@@ -76,6 +76,7 @@ function addSong({title, album, artist, duration, coverArt }) {
              alert(`You Just Created ${title} Check Him Out Down Below`)
     document.getElementById('songs').append(createSongElement(newSong));
     player.songs.push(newSong);
+    return newSong.id
 }
 
 /**
@@ -105,9 +106,17 @@ function handleAddSongEvent(event) {
    const coverartIn = document.getElementsByName("cover-art")[0];
                 
                   /* sending to addSong */
-    addSong({title: titleIn.value, album: albumIn.value, artist: artistIn.value, duration: durationIn.value,
+    let newSongId = addSong({title: titleIn.value, album: albumIn.value, artist: artistIn.value, duration: durationIn.value,
     coverArt: coverartIn.value});
-
+      document.getElementById(`song${newSongId}`).animate([
+        // keyframes
+        { transform: 'translateY(-260vh)' },
+        { transform: 'translateY(0vh)' }
+      ], {
+        // timing options
+        duration: 8000,
+        iterations: 1
+      });
               /* clearing the input fields  */ 
     titleIn.value ='';
     albumIn.value ='';
@@ -121,23 +130,19 @@ function handleAddSongEvent(event) {
  * Creates a song DOM element based on a song object.
  */
 function createSongElement({ id, title, album, artist, duration, coverArt }) {
-    const titleEl = createElement("span",[`Title: ${title}`],[],{id:`title${id}`});
-    const albumEl = createElement("span",[`Album: ${album}`],[],{id:`album${id}`});
-    const artistEl = createElement("span",[`Artist: ${artist}`],[],{id:`artist${id}`});
-    const durationEl = createElement("span",[`${showDuration(duration)}`],[],{id:`duration${id}`}); 
 
-    const playButton = document.createElement("button");
+    const playButton = document.createElement("button");    // Wasnt able to use createElement for the buttons
           playButton.setAttribute("id",`playbutton${id}`);
           playButton.classList.add("buttons");
           playButton.textContent = "Play";
           
-    const removeButton = document.createElement("button");
+    const removeButton = document.createElement("button");    // Wasnt able to use createElement for the buttons
           removeButton.setAttribute("id",`removeButton${id}`);
           removeButton.classList.add("buttons");
           removeButton.textContent = "Remove";
           
     const buttonContaniner = createElement("div",[playButton,removeButton],["btnContainer"],{id:`container${id}`});
-    const children = [displayImg(coverArt), titleEl, albumEl, artistEl,buttonContaniner, durationEl]
+    const children = [displayImg(coverArt), `Title: ${title}`, `Album: ${album}`, `Artist: ${artist}`,buttonContaniner, `${showDuration(duration)}`]
     const classes = ['songs']
     const attrs = {id:`song${id}`}
     const eventListeners = {}
@@ -148,12 +153,9 @@ function createSongElement({ id, title, album, artist, duration, coverArt }) {
  * Creates a playlist DOM element based on a playlist object.
  */
 function createPlaylistElement({ id, name, songs }) {
-    const nameEl = createElement("span",[`Name: ${name}`],[],{id:`name${id}`});
-    const durationEl = createElement("span",[showDuration(playlistDuration(id))],[],{id:`duration${id}`});
-    const numSongEl = createElement("span",[`Number Of Songs: ${songs.length}`],[],{id:`${songs.length}`});
-    const children = [nameEl,durationEl,numSongEl];
+    const children = [`Name: ${name}`, showDuration(playlistDuration(id)), `Number Of Songs: ${songs.length}`];
     const classes = ['playlists'];
-    const attrs = {id: id};
+    const attrs = {id: `playlist${id}`};
     const eventListeners = {}
     return createElement("div", children, classes, attrs, eventListeners)
 }
