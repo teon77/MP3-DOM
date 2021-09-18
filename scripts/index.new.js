@@ -85,22 +85,13 @@ function addSong({title, album, artist, duration, coverArt }) {
  * @param {MouseEvent} event - the click event
  */
 function handleSongClickEvent(event) {
-    let arr = player.songs;
-    const songSection = document.getElementById("songs");
-    songSection.addEventListener("click", function(e){
+      let arr = player.songs;
       for(let i = 0; i < arr.length; i++){
-        if(e.target.id==`playbutton${arr[i].id}`){
-          let btnEl = document.getElementById(`playbutton${arr[i].id}`);
-          btnEl.addEventListener("click",playSong(`song${arr[i].id}`));
-        }
+        if(event.target.id == `playbutton${arr[i].id}`) { playSong(`song${arr[i].id}`); }
       }
       for(let i = 0; i < arr.length; i++){
-        if(e.target.id == `removeButton${arr[i].id}`){
-          let btnEl = document.getElementById(`removeButton${arr[i].id}`);
-          btnEl.addEventListener("click",removeSong(`song${arr[i].id}`));
-        }
+        if(event.target.id == `removeButton${arr[i].id}`){ removeSong(`song${arr[i].id}`); }
       }
-    })
 }
 
 /**
