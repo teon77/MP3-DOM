@@ -1,1 +1,70 @@
-/* Your code here */
+body {
+    background-color: lavender;
+    background: linear-gradient(335deg, #ccffff 10%, #ffcccc 100%);
+}
+
+#songs {
+    display: flex;
+    margin-left: 1rem;
+    margin-top: 15rem;
+    flex-direction: column;
+}
+.songs {
+    background: linear-gradient(35deg, #92e9c8 10%, #ffcccc 100%);
+    border-radius: 1rem;
+    display: flex;
+    max-height: 10rem;
+    margin-top: 1rem;
+    margin-left: 1rem;
+    font-family: "Azeret Mono", monospace;
+    font-size: 1.8rem;
+    justify-content: start;
+}
+.songs div {
+    margin-left: 2rem;
+    margin-top: 0.5rem;
+    margin-right: 1rem;
+}
+
+#playlists {
+    display: flex;
+    margin-left: 1rem;
+    margin-top: 15rem;
+    flex-direction: column;
+}
+
+.playlists {
+    background: linear-gradient(35deg, #92e9c8 10%, #ffcccc 100%);
+    border-radius: 1rem;
+    display: flex;
+    max-height: 10rem;
+    margin-top: 1rem;
+    margin-left: 1rem;
+    font-family: "Azeret Mono", monospace;
+    font-size: 1.8rem;
+    justify-content: start;
+}
+
+.playlists div {
+    margin-left: 2rem;
+    margin-top: 0.5rem;
+}
+.now {
+    background: red;
+}
+.header {
+    position: relative;
+    left: 600px;
+    top: 50px;
+    font-size: 5rem;
+}
+.picture {
+    max-height: 9rem;
+    border-radius: 1rem;
+}
+h3 {
+    position: relative;
+    top: 10rem;
+    left: 10rem;
+    font-size: 3rem;
+}
